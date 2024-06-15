@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEditor.ShaderGraph.Internal;
 public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
 {
 
@@ -35,14 +36,20 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
     bool inputCrouch;
     bool inputSprint;
 
-    Animator animator;
+    [SerializeField] Animator animator;
     CharacterController cc;
+
+
+    ///DEBUG
+
+    public float charSpeed;
+
+    public bool isRunning;
 
 
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
 
         // Message informing the user that they forgot to add an animator
         if (animator == null)
@@ -65,11 +72,11 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
         // inputJump = Input.GetAxis("Jump") == 1f;
         //inputSprint = Input.GetAxis("Fire3") == 1f;
         // Unfortunately GetAxis does not work with GetKeyDown, so inputs must be taken individually
-        inputCrouch = Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1);
+       // inputCrouch = Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1);
 
         // Check if you pressed the crouch input key and change the player's state
-        if (inputCrouch)
-            isCrouching = !isCrouching;
+        // if (inputCrouch)
+        //     isCrouching = !isCrouching;
 
         // Run and Crouch animation
         // If dont have animator component, this block wont run
@@ -81,8 +88,9 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
          //   animator.SetBool("crouch", isCrouching);
 
             // Run
-            float minimumSpeed = 0.9f;
-          //  animator.SetBool("run", cc.velocity.magnitude > minimumSpeed);
+            float minimumSpeed = 0.5f;
+            charSpeed = cc.velocity.magnitude;
+            animator.SetBool("run", cc.velocity.magnitude > minimumSpeed);
 
             // Sprint
             isSprinting = cc.velocity.magnitude > minimumSpeed && inputSprint;
@@ -92,7 +100,7 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
 
         // Jump animation
         if (animator != null)
-         //  animator.SetBool("air", cc.isGrounded == false);
+         animator.SetBool("air", cc.isGrounded == false);
 
         HeadHittingDetect();
 
@@ -108,8 +116,8 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
         Debug.Log("VD = " + velocityAdittion);
         if (isSprinting)
             velocityAdittion = sprintAdittion;
-        if (isCrouching)
-            velocityAdittion = -(velocity * 0.50f); // -50% velocity
+        // if (isCrouching)
+        //     velocityAdittion = -(velocity * 0.50f); // -50% velocity
 
         // Direction movement
         float directionX = inputHorizontal * (velocity + velocityAdittion) * Time.deltaTime;
@@ -165,8 +173,8 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
         Vector3 verticalDirection = Vector3.up * directionY;
         Vector3 horizontalDirection = forward + right;
 
-        Vector3 moviment = verticalDirection + horizontalDirection;
-        cc.Move(moviment);
+        Vector3 movement = verticalDirection + horizontalDirection;
+        cc.Move(movement);
 
     }
 
@@ -181,10 +189,6 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
         }
     }
 
-    void Fire()
-    {
-
-    }
 
 
     //This function makes the character end his jump if he hits his head on something
@@ -223,6 +227,7 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
 
     public void OnJump(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+    
         if (context.performed)
         {
             Debug.Log("Pressed");
@@ -232,17 +237,6 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        inputSprint = context.ReadValue<float>() == 1f;
-        // if(context.action.IsPressed()&& context.action.WasPerformedThisFrame())
-        // {
-        //     Debug.Log("Pressed");
-        //     inputSprint = context.ReadValue<float>() == 1f;
-        // }
-        // else if(context.action.WasReleasedThisFrame())
-        // {
-        //      inputSprint = context.ReadValue<float>() == 0f;
-        // }
-
-        
+        inputSprint = context.ReadValue<float>() == 1f;     
     }
 }
