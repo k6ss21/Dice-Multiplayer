@@ -7,11 +7,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] float bulletSpeed = 15f;
     Vector3 direction;
     Rigidbody rb;
-  
-    private void Start() {
+
+    private void Start()
+    {
         rb = GetComponent<Rigidbody>();
     }
-    
+
     void FixedUpdate()
     {
         BulletMovement();
@@ -24,7 +25,18 @@ public class Bullet : MonoBehaviour
 
     void BulletMovement()
     {
-       rb.velocity = direction * bulletSpeed * Time.deltaTime;
-        
+        rb.velocity = direction * bulletSpeed * Time.deltaTime;
+
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            Debug.Log("HIT ENEMY!!!");
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
+    }
+
 }

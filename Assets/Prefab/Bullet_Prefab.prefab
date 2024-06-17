@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4296979776349496807}
   - component: {fileID: 3336527758536028421}
   - component: {fileID: 7330836405644081601}
+  - component: {fileID: 581374135487943081}
   m_Layer: 0
   m_Name: Bullet_Prefab
   m_TagString: Untagged
@@ -168,7 +169,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 0.5
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -239,3 +240,24 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!65 &581374135487943081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224082576095307643}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02857884, y: 0.033000004, z: 0.0975}
+  m_Center: {x: 0, y: 0, z: -0.012749998}
