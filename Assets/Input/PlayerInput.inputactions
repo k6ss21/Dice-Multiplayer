@@ -657,6 +657,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Other",
+            "id": "088842c5-bd60-450e-9682-0b56e1381039",
+            "actions": [
+                {
+                    "name": "Roll Dice",
+                    "type": "Button",
+                    "id": "9825b975-e8d5-4a7d-a919-a23c9b353a7e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a7c5e1e8-88eb-472a-b474-001e3e3ac949",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Roll Dice",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

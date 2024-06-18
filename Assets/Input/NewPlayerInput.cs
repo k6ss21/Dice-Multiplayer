@@ -679,6 +679,54 @@ public partial class @NewPlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Other"",
+            ""id"": ""c2293cec-ef56-4a33-b34d-e9161693b8f6"",
+            ""actions"": [
+                {
+                    ""name"": ""RollDice"",
+                    ""type"": ""Button"",
+                    ""id"": ""132e815f-9383-4e47-a04d-aa88864330f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetDice"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9d6fa44-12a6-4e92-862c-44960a289c43"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cf7effa8-6400-479e-b1e5-3868879b335d"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RollDice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""478167fa-1f54-42c5-8010-204f26834ced"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetDice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -702,6 +750,10 @@ public partial class @NewPlayerInput: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        // Other
+        m_Other = asset.FindActionMap("Other", throwIfNotFound: true);
+        m_Other_RollDice = m_Other.FindAction("RollDice", throwIfNotFound: true);
+        m_Other_ResetDice = m_Other.FindAction("ResetDice", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -955,6 +1007,60 @@ public partial class @NewPlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Other
+    private readonly InputActionMap m_Other;
+    private List<IOtherActions> m_OtherActionsCallbackInterfaces = new List<IOtherActions>();
+    private readonly InputAction m_Other_RollDice;
+    private readonly InputAction m_Other_ResetDice;
+    public struct OtherActions
+    {
+        private @NewPlayerInput m_Wrapper;
+        public OtherActions(@NewPlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RollDice => m_Wrapper.m_Other_RollDice;
+        public InputAction @ResetDice => m_Wrapper.m_Other_ResetDice;
+        public InputActionMap Get() { return m_Wrapper.m_Other; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OtherActions set) { return set.Get(); }
+        public void AddCallbacks(IOtherActions instance)
+        {
+            if (instance == null || m_Wrapper.m_OtherActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_OtherActionsCallbackInterfaces.Add(instance);
+            @RollDice.started += instance.OnRollDice;
+            @RollDice.performed += instance.OnRollDice;
+            @RollDice.canceled += instance.OnRollDice;
+            @ResetDice.started += instance.OnResetDice;
+            @ResetDice.performed += instance.OnResetDice;
+            @ResetDice.canceled += instance.OnResetDice;
+        }
+
+        private void UnregisterCallbacks(IOtherActions instance)
+        {
+            @RollDice.started -= instance.OnRollDice;
+            @RollDice.performed -= instance.OnRollDice;
+            @RollDice.canceled -= instance.OnRollDice;
+            @ResetDice.started -= instance.OnResetDice;
+            @ResetDice.performed -= instance.OnResetDice;
+            @ResetDice.canceled -= instance.OnResetDice;
+        }
+
+        public void RemoveCallbacks(IOtherActions instance)
+        {
+            if (m_Wrapper.m_OtherActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IOtherActions instance)
+        {
+            foreach (var item in m_Wrapper.m_OtherActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_OtherActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public OtherActions @Other => new OtherActions(this);
     public interface IUIActions
     {
         void OnNavigate(InputAction.CallbackContext context);
@@ -975,5 +1081,10 @@ public partial class @NewPlayerInput: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+    }
+    public interface IOtherActions
+    {
+        void OnRollDice(InputAction.CallbackContext context);
+        void OnResetDice(InputAction.CallbackContext context);
     }
 }

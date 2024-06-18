@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 public class PlayerController : MonoBehaviour
 {
 
@@ -38,10 +39,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator animator;
     CharacterController cc;
 
+    public enum PlayerInputSelect
+    {
+        Mobile,
+        PC
+    }
+
+    public PlayerInputSelect playerInputSelect;
+
     NewPlayerInput playerInput;
-
-
-    ///DEBUG
 
     public FixedJoystick fixedJoystick;
 
@@ -58,9 +64,9 @@ public class PlayerController : MonoBehaviour
         playerInput.Enable();
     }
 
-     private void OnDisable()
+    private void OnDisable()
     {
-        playerInput.Enable();
+        playerInput.Disable();
     }
 
 
@@ -84,13 +90,27 @@ public class PlayerController : MonoBehaviour
         // // Debug.Log(inputHorizontal);
         // inputVertical = Input.GetAxis("Vertical");
 
-        // direction = playerInput.Player.Move.ReadValue<Vector2>();
+        if (playerInputSelect == PlayerInputSelect.Mobile)
+        {
+            inputHorizontal = fixedJoystick.Horizontal;
+            inputVertical = fixedJoystick.Vertical;
+        }
+        else if (playerInputSelect == PlayerInputSelect.PC)
+        {
+            direction = playerInput.Player.Move.ReadValue<Vector2>();
 
-        // inputHorizontal = direction.x;
-        // inputVertical = direction.y;
+            inputHorizontal = direction.x;
+            inputVertical = direction.y;
+        }
 
-        inputHorizontal = fixedJoystick.Horizontal;
-        inputVertical = fixedJoystick.Vertical;
+        if(playerInput.Player.Jump.WasPerformedThisFrame())
+        {   
+            Jump();
+        }
+
+
+        // inputHorizontal = fixedJoystick.Horizontal;
+        // inputVertical = fixedJoystick.Vertical;
         //        Debug.Log(inputHorizontal);
         // inputJump = Input.GetAxis("Jump") == 1f;
         //inputSprint = Input.GetAxis("Fire3") == 1f;
