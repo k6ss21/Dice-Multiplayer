@@ -4,8 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEditor.ShaderGraph.Internal;
-public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
+public class PlayerController : MonoBehaviour
 {
 
     Vector2 direction;
@@ -208,24 +207,13 @@ public class PlayerController : MonoBehaviour, PlayerInput.IPlayerActions
         }
     }
 
-
-    public void OnFire(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-
-    }
-
-    public void OnLook(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
-    }
-
     // Get Input from Player
-    public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
     }
 
-    public void OnJump(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
     
         if (context.performed)

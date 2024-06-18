@@ -53,7 +53,7 @@ public class VisionCone : MonoBehaviour
         if (active)
         {
             DrawVisionCone();//calling the vision cone function everyframe just so the cone is updated every frame
-        }
+        }       
     }
 
 
