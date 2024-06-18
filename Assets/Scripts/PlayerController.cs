@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -38,12 +38,31 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator animator;
     CharacterController cc;
 
+    NewPlayerInput playerInput;
+
 
     ///DEBUG
+
+    public FixedJoystick fixedJoystick;
 
     public float charSpeed;
 
     public bool isRunning;
+    private void Awake()
+    {
+        playerInput = new NewPlayerInput();
+    }
+
+    private void OnEnable()
+    {
+        playerInput.Enable();
+    }
+
+     private void OnDisable()
+    {
+        playerInput.Enable();
+    }
+
 
 
     void Start()
@@ -65,13 +84,18 @@ public class PlayerController : MonoBehaviour
         // // Debug.Log(inputHorizontal);
         // inputVertical = Input.GetAxis("Vertical");
 
-        inputHorizontal = direction.x;
-        inputVertical = direction.y;
+        // direction = playerInput.Player.Move.ReadValue<Vector2>();
+
+        // inputHorizontal = direction.x;
+        // inputVertical = direction.y;
+
+        inputHorizontal = fixedJoystick.Horizontal;
+        inputVertical = fixedJoystick.Vertical;
         //        Debug.Log(inputHorizontal);
         // inputJump = Input.GetAxis("Jump") == 1f;
         //inputSprint = Input.GetAxis("Fire3") == 1f;
         // Unfortunately GetAxis does not work with GetKeyDown, so inputs must be taken individually
-       // inputCrouch = Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1);
+        // inputCrouch = Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton1);
 
         // Check if you pressed the crouch input key and change the player's state
         // if (inputCrouch)
@@ -84,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
             // Crouch
             // Note: The crouch animation does not shrink the character's collider
-         //   animator.SetBool("crouch", isCrouching);
+            //   animator.SetBool("crouch", isCrouching);
 
             // Run
             float minimumSpeed = 0.5f;
@@ -99,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
         // Jump animation
         if (animator != null)
-         animator.SetBool("air", cc.isGrounded == false);
+            animator.SetBool("air", cc.isGrounded == false);
 
         HeadHittingDetect();
 
@@ -208,14 +232,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // Get Input from Player
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        direction = context.ReadValue<Vector2>();
-    }
+    // public void OnMove(InputAction.CallbackContext context)
+    // {
+    //     direction = context.ReadValue<Vector2>();
+    // }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-    
+
         if (context.performed)
         {
             Debug.Log("Pressed");
@@ -225,6 +249,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        inputSprint = context.ReadValue<float>() == 1f;     
+        inputSprint = context.ReadValue<float>() == 1f;
     }
 }
