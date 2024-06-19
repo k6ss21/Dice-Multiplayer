@@ -22,6 +22,8 @@ public class SkillAssign : MonoBehaviour
     {
 
         RestSelect();
+        DisableAfterSelected();
+        UpdateSlotUI();
     }
 
     public void SelectSlot(SkillSlot slot)
@@ -38,19 +40,36 @@ public class SkillAssign : MonoBehaviour
         }
     }
 
+
+
     public void AssignSkillToSlot(SkillCard skillCard)
     {
+        if(selectedSlot == null) return;
         assignedSkills.RemoveAt(selectedSlot.slotNumber - 1 );
         assignedSkills.Insert(selectedSlot.slotNumber - 1 , skillCard);
+        UpdateSlotUI();
+        DisableAfterSelected();
         //  assignedSkills.Add(skillCard);
 
     }
 
-    void DisableAfterSelected(SkillCard skillCard)
+    void DisableAfterSelected()
     {
         foreach(SkillCard item in allSkills)
         {
-            item.disable = false;
+             item.Disable(false);
+        }
+        foreach (SkillCard item in assignedSkills)
+        {
+            item.Disable(true);
+        }
+    }
+
+    void UpdateSlotUI()
+    {
+        for (int i = 0; i < skillSlot.Length; i++)
+        {
+            skillSlot[i].GetComponentInChildren<TextMeshProUGUI>().text = assignedSkills[i].name.ToString();
         }
     }
 
