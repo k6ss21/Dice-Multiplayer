@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.ReorderableList;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SkillAssign : MonoBehaviour
 {
     public SkillSlot[] skillSlot;
@@ -69,7 +69,7 @@ public class SkillAssign : MonoBehaviour
     {
         for (int i = 0; i < skillSlot.Length; i++)
         {
-            skillSlot[i].GetComponentInChildren<TextMeshProUGUI>().text = assignedSkills[i].name.ToString();
+            skillSlot[i].GetComponentInChildren<Image>().sprite = assignedSkills[i].skillDetails.skillCardImage;
         }
     }
 

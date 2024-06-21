@@ -12,13 +12,19 @@ public class SkillCard : MonoBehaviour, IPointerClickHandler
 
     Image image;
 
+    [SerializeField] public SkillDetails skillDetails;
+
     private void Start()
     {
         skillAssign = FindObjectOfType<SkillAssign>();
+        if (skillDetails != null)
+        {
+            image.sprite = skillDetails.skillCardImage;
+        }
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(disable) return;
+        if (disable) return;
         skillAssign.AssignSkillToSlot(this);
         Debug.Log("Pointer Click");
     }
