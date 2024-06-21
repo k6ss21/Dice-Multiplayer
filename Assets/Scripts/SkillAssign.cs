@@ -17,6 +17,8 @@ public class SkillAssign : MonoBehaviour
 
     public List<SkillCard> allSkills;
 
+    public ManageSkills skillManager;
+
 
     private void Start()
     {
@@ -71,6 +73,17 @@ public class SkillAssign : MonoBehaviour
         {
             skillSlot[i].GetComponentInChildren<Image>().sprite = assignedSkills[i].skillDetails.skillCardImage;
         }
+    }
+
+    public void SaveSkills()
+    {
+        List<SkillDetails> saveSkillList = new List<SkillDetails>();
+        foreach (SkillCard item in assignedSkills)
+        {
+            saveSkillList.Add(item.skillDetails);
+        }
+        //Debug.Log("Save = " + GetComponent<ISkillSaver>());
+        GetComponent<ISkillSaver>().Save(saveSkillList);
     }
 
 

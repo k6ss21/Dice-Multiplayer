@@ -10,6 +10,14 @@ public class SkillPageManager : MonoBehaviour
     [SerializeField] RectTransform page3;
 
 
+    private void Start()
+    {
+        page1.gameObject.SetActive(true);
+        page2.gameObject.SetActive(false);
+        page3.gameObject.SetActive(false);
+    }
+
+
     public void ShowPage1()
     {
         page1.gameObject.SetActive(true);
@@ -31,7 +39,13 @@ public class SkillPageManager : MonoBehaviour
         page3.gameObject.SetActive(true);
     }
 
-
+    public void SaveButton()
+    {
+        page1.GetComponentInChildren<SkillAssign>().SaveSkills();
+        page2.GetComponentInChildren<SkillAssign>().SaveSkills();
+        page3.GetComponentInChildren<SkillAssign>().SaveSkills();
+    }
+    
 
 
 }

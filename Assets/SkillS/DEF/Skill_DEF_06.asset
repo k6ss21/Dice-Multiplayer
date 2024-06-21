@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f5b659a068b281428920d5d24c0b46d, type: 3}
-  m_Name: Skill_1
+  m_Name: Skill_DEF_06
   m_EditorClassIdentifier: 
-  skillCode: AT001
+  skillCode: DEF006
   skillName: AttackSkill01
+  skillCardImage: {fileID: 1212058728, guid: 8b0e10ea3919bc045a2b16d55f68f283, type: 3}

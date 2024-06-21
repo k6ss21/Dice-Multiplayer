@@ -1,3 +1,4 @@
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class SkillCard : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        image = GetComponent<Image>();
         skillAssign = FindObjectOfType<SkillAssign>();
         if (skillDetails != null)
         {
