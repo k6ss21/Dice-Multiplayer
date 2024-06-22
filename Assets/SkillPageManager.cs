@@ -12,6 +12,7 @@ public class SkillPageManager : MonoBehaviour
 
     private void Start()
     {
+        SaveButton();
         page1.gameObject.SetActive(true);
         page2.gameObject.SetActive(false);
         page3.gameObject.SetActive(false);

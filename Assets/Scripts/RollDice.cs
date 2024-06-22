@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+using Random = UnityEngine.Random;
 public class RollDice : MonoBehaviour
 {
+
+    public bool enable;
     Vector3 startPos;
     Quaternion startRotation;
     NewPlayerInput otherInput;
@@ -12,9 +16,13 @@ public class RollDice : MonoBehaviour
 
     private float forceX, forceY, forceZ;
 
+
+
     private void Awake()
     {
+        enable = true;
         otherInput = new NewPlayerInput();
+
     }
 
 
@@ -39,9 +47,12 @@ public class RollDice : MonoBehaviour
 
     private void Update()
     {
-        if (otherInput.Other.RollDice.WasPerformedThisFrame())
+        if (enable)
         {
-            DiceRoll();
+            if (otherInput.Other.RollDice.WasPerformedThisFrame())
+            {
+                DiceRoll();
+            }
         }
         if (otherInput.Other.ResetDice.WasPerformedThisFrame())
         {
@@ -53,7 +64,7 @@ public class RollDice : MonoBehaviour
     private void DiceRoll()
     {
         rb.isKinematic = false;
-
+        enable = false;
         forceX = Random.Range(minRandomForceValue, maxRandomForceValue);
         forceY = Random.Range(minRandomForceValue, maxRandomForceValue);
         forceZ = Random.Range(minRandomForceValue, maxRandomForceValue);
@@ -62,7 +73,7 @@ public class RollDice : MonoBehaviour
         rb.AddTorque(forceX, forceY, forceZ);
     }
 
-    private void ResetDice()
+    public void ResetDice()
     {
         transform.position = startPos;
         transform.rotation = startRotation;

@@ -8,6 +8,8 @@ public class ManageSkills : MonoBehaviour
     public List<SkillDetails> skillsDetails_DEF;
     public List<SkillDetails> skillsDetails_UP;
 
+     public SkillDetails attSkill, defSkill, upSkill;
+
 
     private void OnEnable()
     {
