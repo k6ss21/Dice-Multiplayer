@@ -6,7 +6,7 @@ public class DiceRollUi : MonoBehaviour
 {
     public Image[] images;
     List<SkillDetails> skillDetails;
-    int rollCount = 1;
+    
 
     ManageSkills skillsManager;
 
@@ -44,15 +44,15 @@ public class DiceRollUi : MonoBehaviour
     }
     void AssignRollList()
     {
-        switch (rollCount)
+        switch (rollDice.rollCount)
         {
-            case 1:
+            case 0:
                 skillDetails = skillsManager.skillsDetails_ATT;
                 break;
-            case 2:
+            case 1:
                 skillDetails = skillsManager.skillsDetails_DEF;
                 break;
-            case 3:
+            case 2:
                 skillDetails = skillsManager.skillsDetails_UP;
                 break;
             default:
@@ -63,7 +63,7 @@ public class DiceRollUi : MonoBehaviour
 
     void AfterRoll(int value)
     {
-        switch (rollCount)
+        switch (rollDice.rollCount)
         {
             case 1:
                 skillsManager.attSkill = skillDetails[value - 1];
@@ -84,23 +84,25 @@ public class DiceRollUi : MonoBehaviour
 
     IEnumerator ShowResultUI(int value)
     {
-        
+
         resultUI.SetActive(true);
         resultImage.sprite = skillDetails[value].skillCardImage;
         yield return new WaitForSeconds(3f);
-        resultUI.SetActive(false);
-        UpdateSkillsUI();
-        rollDice.ResetDice();
-         rollDice.enable = true;
-        faceChecker.stop = false;
-        if(rollCount == 3)
+       
+        if (rollDice.rollCount == 3)
         {
             rollDice.enable = false;
             Debug.Log("ROLL COMLETE");
             FindObjectOfType<LevelManager>().LoadNextLevel();
-
         }
-        rollCount++;
+        else
+        {  
+            resultUI.SetActive(false);
+            UpdateSkillsUI();
+            rollDice.ResetDice();
+            rollDice.enable = true;
+            faceChecker.stop = false;
+        }
 
     }
 

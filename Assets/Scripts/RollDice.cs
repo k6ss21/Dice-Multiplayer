@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using Random = UnityEngine.Random;
+using System.Threading;
 public class RollDice : MonoBehaviour
 {
 
@@ -15,6 +16,8 @@ public class RollDice : MonoBehaviour
     [SerializeField] float minRandomForceValue, maxRandomForceValue, startRollingForce;
 
     private float forceX, forceY, forceZ;
+
+    public int rollCount =0;
 
 
 
@@ -63,6 +66,7 @@ public class RollDice : MonoBehaviour
 
     private void DiceRoll()
     {
+        rollCount++;
         rb.isKinematic = false;
         enable = false;
         forceX = Random.Range(minRandomForceValue, maxRandomForceValue);

@@ -1801,9 +1801,9 @@ GameObject:
   - component: {fileID: 5823515463682549411}
   - component: {fileID: 2966774726029447229}
   - component: {fileID: 6641142654946757858}
-  - component: {fileID: 7540771898528409675}
   - component: {fileID: 7540771898528409674}
   - component: {fileID: 7540771898528409676}
+  - component: {fileID: 7540771898528409677}
   m_Layer: 8
   m_Name: Dice
   m_TagString: Dice
@@ -1838,28 +1838,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &7540771898528409675
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540771898528409673}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 57bccef494d4ea3468183fa80548e096, type: 3}
 --- !u!114 &7540771898528409676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1876,6 +1854,27 @@ MonoBehaviour:
   minRandomForceValue: 25
   maxRandomForceValue: 50
   startRollingForce: 400
+--- !u!65 &7540771898528409677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540771898528409673}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020000005, y: 0.020000001, z: 0.020000001}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
