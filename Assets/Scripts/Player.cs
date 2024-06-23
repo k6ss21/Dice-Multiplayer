@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
@@ -21,13 +22,16 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Shooting");
         GameObject obj = Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);
-        if (los.enemyOnSight)
+        if (enemyPlayer != null)
         {
-            obj.GetComponent<Bullet>().SetTarget(enemyPlayer); 
-        }
-        else
-        {
-            obj.GetComponent<Bullet>().SetDirection(transform.forward);
+            if (los.enemyOnSight)
+            {
+                obj.GetComponent<Bullet>().SetTarget(enemyPlayer);
+            }
+            else
+            {
+                obj.GetComponent<Bullet>().SetDirection(transform.forward);
+            }
         }
 
     }

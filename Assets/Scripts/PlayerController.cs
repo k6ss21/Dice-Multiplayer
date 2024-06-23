@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         // // Debug.Log(inputHorizontal);
         // inputVertical = Input.GetAxis("Vertical");
 
-        if (playerInputSelect == PlayerInputSelect.Mobile)
+        if (playerInputSelect == PlayerInputSelect.Mobile && fixedJoystick!= null)
         {
             inputHorizontal = fixedJoystick.Horizontal;
             inputVertical = fixedJoystick.Vertical;
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
 
         // Sprinting velocity boost or crounching desacelerate
         float velocityAdittion = 0;
-        Debug.Log("VD = " + velocityAdittion);
+       // Debug.Log("VD = " + velocityAdittion);
         if (isSprinting)
             velocityAdittion = sprintAdittion;
         // if (isCrouching)

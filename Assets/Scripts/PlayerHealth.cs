@@ -16,12 +16,15 @@ public class PlayerHealth : MonoBehaviour
     {
         barUpdate = false;
         currentHealth = playerHealth;
-        fillImage.fillAmount = currentHealth / playerHealth;
+        if (fillImage != null)
+        {
+            fillImage.fillAmount = currentHealth / playerHealth;
+        }
     }
 
     private void Update()
     {
-        if(barUpdate)
+        if (barUpdate)
         {
             lerpSpeed = 3f * Time.deltaTime;
             HealthBarFiller();
@@ -40,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeHealth(float value)
     {
         currentHealth += value;
+        barUpdate = true;
         if (currentHealth >= playerHealth)
         {
             currentHealth = playerHealth;
@@ -48,12 +52,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void HealthBarFiller()
     {
-        float smoothHealth = Mathf.Lerp(fillImage.fillAmount, currentHealth / playerHealth, lerpSpeed);
-        Debug.Log("Smooth Health = " + smoothHealth + "Current Health = " + currentHealth/playerHealth);
-        fillImage.fillAmount = smoothHealth;
-        if((int)currentHealth == (int)(smoothHealth * playerHealth))
+        if (fillImage != null)
         {
-            barUpdate = false;
+            float smoothHealth = Mathf.Lerp(fillImage.fillAmount, currentHealth / playerHealth, lerpSpeed);
+            // Debug.Log("Smooth Health = " + smoothHealth + "Current Health = " + currentHealth/playerHealth);
+            fillImage.fillAmount = smoothHealth;
+            if ((int)currentHealth == (int)(smoothHealth * playerHealth))
+            {
+                barUpdate = false;
+            }
         }
     }
 }
