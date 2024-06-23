@@ -1,15 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float playerHealth;
     float currentHealth;
 
+    public Image fillImage;
+    public bool barUpdate;
+    public float lerpSpeed;
+
+    private void Start()
+    {
+        barUpdate = false;
+        currentHealth = playerHealth;
+        fillImage.fillAmount = currentHealth / playerHealth;
+    }
+
+    private void Update()
+    {
+        if(barUpdate)
+        {
+            lerpSpeed = 3f * Time.deltaTime;
+            HealthBarFiller();
+        }
+    }
     public void DealDamage(float value)
     {
         currentHealth -= value;
+        barUpdate = true;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -24,4 +45,15 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = playerHealth;
         }
     }
-}   
+
+    public void HealthBarFiller()
+    {
+        float smoothHealth = Mathf.Lerp(fillImage.fillAmount, currentHealth / playerHealth, lerpSpeed);
+        Debug.Log("Smooth Health = " + smoothHealth + "Current Health = " + currentHealth/playerHealth);
+        fillImage.fillAmount = smoothHealth;
+        if((int)currentHealth == (int)(smoothHealth * playerHealth))
+        {
+            barUpdate = false;
+        }
+    }
+}
