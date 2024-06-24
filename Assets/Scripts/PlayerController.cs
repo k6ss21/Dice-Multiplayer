@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
+using Unity.Netcode;
 public class PlayerController : MonoBehaviour
 {
 
@@ -90,18 +86,20 @@ public class PlayerController : MonoBehaviour
         // // Debug.Log(inputHorizontal);
         // inputVertical = Input.GetAxis("Vertical");
 
-        if (playerInputSelect == PlayerInputSelect.Mobile && fixedJoystick!= null)
-        {
-            inputHorizontal = fixedJoystick.Horizontal;
-            inputVertical = fixedJoystick.Vertical;
-        }
-        else if (playerInputSelect == PlayerInputSelect.PC)
-        {
+
+        
+        // if (playerInputSelect == PlayerInputSelect.Mobile && fixedJoystick!= null)
+        // {
+        //     inputHorizontal = fixedJoystick.Horizontal;
+        //     inputVertical = fixedJoystick.Vertical;
+        // }
+        // else if (playerInputSelect == PlayerInputSelect.PC)
+        // {
             direction = playerInput.Player.Move.ReadValue<Vector2>();
 
             inputHorizontal = direction.x;
             inputVertical = direction.y;
-        }
+        // }
 
         if(playerInput.Player.Jump.WasPerformedThisFrame())
         {   

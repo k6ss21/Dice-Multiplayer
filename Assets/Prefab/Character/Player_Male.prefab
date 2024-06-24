@@ -306,7 +306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3551594630690804474
 Transform:
   m_ObjectHideFlags: 0
@@ -1400,7 +1400,6 @@ GameObject:
   - component: {fileID: 254868653508149858}
   - component: {fileID: 8367510717239372962}
   - component: {fileID: 6584002625509189082}
-  - component: {fileID: 1428207090340108972}
   m_Layer: 0
   m_Name: Player_Male
   m_TagString: Untagged
@@ -1417,7 +1416,7 @@ Transform:
   m_GameObject: {fileID: 4527809440917044662}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.494, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1550,27 +1549,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   VisionConeResolution: 120
---- !u!114 &1428207090340108972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4527809440917044662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3778904875
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &4601434948734315562
 GameObject:
   m_ObjectHideFlags: 0

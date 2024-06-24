@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4856081919308451038}
   - component: {fileID: 5653861943968939750}
   - component: {fileID: 7673317101116771730}
+  - component: {fileID: 1634881687929749211}
   - component: {fileID: 7357076543837453576}
   - component: {fileID: 2196748707251398479}
   m_Layer: 0
@@ -233,6 +234,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: aaf00dd1-0967-4ac9-839e-f909c7852873
     m_ActionName: Player/Sprint[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9825b975-e8d5-4a7d-a919-a23c9b353a7e
+    m_ActionName: Other/Roll Dice[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -264,6 +269,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1634881687929749211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860833276072620960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 3445640526
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &7357076543837453576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +307,11 @@ MonoBehaviour:
   jumpForce: 18
   jumpTime: 0.85
   gravity: 9.8
+  animator: {fileID: 0}
+  playerInputSelect: 0
+  fixedJoystick: {fileID: 0}
+  charSpeed: 0
+  isRunning: 0
 --- !u!95 &2196748707251398479
 Animator:
   serializedVersion: 5
