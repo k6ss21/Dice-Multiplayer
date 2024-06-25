@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerHealth : MonoBehaviour,IDamageable
+public class EnemyHealth : MonoBehaviour,IDamageable
 {
-    [SerializeField] float playerHealth;
+    [SerializeField] float enemyHealth;
     float currentHealth;
 
     public Image fillImage;
@@ -15,10 +12,10 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     private void Start()
     {
         barUpdate = false;
-        currentHealth = playerHealth;
+        currentHealth = enemyHealth;
         if (fillImage != null)
         {
-            fillImage.fillAmount = currentHealth / playerHealth;
+            fillImage.fillAmount = currentHealth / enemyHealth;
         }
     }
 
@@ -44,9 +41,9 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     {
         currentHealth += value;
         barUpdate = true;
-        if (currentHealth >= playerHealth)
+        if (currentHealth >= enemyHealth)
         {
-            currentHealth = playerHealth;
+            currentHealth = enemyHealth;
         }
     }
 
@@ -54,10 +51,10 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     {
         if (fillImage != null)
         {
-            float smoothHealth = Mathf.Lerp(fillImage.fillAmount, currentHealth / playerHealth, lerpSpeed);
+            float smoothHealth = Mathf.Lerp(fillImage.fillAmount, currentHealth / enemyHealth, lerpSpeed);
             // Debug.Log("Smooth Health = " + smoothHealth + "Current Health = " + currentHealth/playerHealth);
             fillImage.fillAmount = smoothHealth;
-            if ((int)currentHealth == (int)(smoothHealth * playerHealth))
+            if ((int)currentHealth == (int)(smoothHealth * enemyHealth))
             {
                 barUpdate = false;
             }

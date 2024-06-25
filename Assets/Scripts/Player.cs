@@ -10,11 +10,11 @@ public class Player : MonoBehaviour
 
     LineOfSight los;
 
-    public GameObject enemyPlayer;
+     EnemyAI enemyPlayer;
 
     private void Start()
     {
-
+        enemyPlayer = FindObjectOfType<EnemyAI>();
         los = GetComponentInChildren<LineOfSight>();
     }
 
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         {
             if (los.enemyOnSight)
             {
-                obj.GetComponent<Bullet>().SetTarget(enemyPlayer);
+                obj.GetComponent<Bullet>().SetTarget(enemyPlayer.gameObject);
             }
             else
             {
@@ -43,4 +43,6 @@ public class Player : MonoBehaviour
             Shoot();
         }
     }
+
+ 
 }

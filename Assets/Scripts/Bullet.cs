@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] float damage;
     [SerializeField] float bulletSpeed = 15f;
     [SerializeField] float angleChangingSpeed = 15f;
     Vector3 direction;
     Rigidbody rb;
 
     GameObject target;
+
+
+   [SerializeField] string colliderCheckTag = "Enemy";
 
     private void Start()
     {
@@ -50,9 +54,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag(colliderCheckTag))
         {
-            Debug.Log("HIT ENEMY!!!");
+            other.GetComponent<IDamageable>().TakeDamage(damage);
+          //  Debug.Log("HIT ENEMY!!!");
             Destroy(gameObject);
             // Destroy(other.gameObject);
         }
