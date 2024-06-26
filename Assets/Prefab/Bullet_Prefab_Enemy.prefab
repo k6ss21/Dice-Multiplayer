@@ -102,6 +102,7 @@ MonoBehaviour:
   damage: 10
   bulletSpeed: 1000
   angleChangingSpeed: 15
+  trackingDistanceLimit: 3
   colliderCheckTag: Player
 --- !u!54 &3336527758536028421
 Rigidbody:

@@ -77,7 +77,7 @@ public class Bullet : MonoBehaviour
         if (canTrack)
         {
             float distance = Vector3.Distance(target.transform.position, rb.position);
-            print(distance);
+//            print(distance);
             if (distance >= trackingDistanceLimit)
             {
                 direction = target.transform.position - rb.position;
