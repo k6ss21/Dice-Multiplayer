@@ -8,25 +8,26 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform shootPosition;
 
-    LineOfSight los;
+    PlayerReferences playerReferences;
 
-     EnemyAI enemyPlayer;
+    
 
     private void Start()
     {
-        enemyPlayer = FindObjectOfType<EnemyAI>();
-        los = GetComponentInChildren<LineOfSight>();
+        playerReferences = GetComponent<PlayerReferences>();
+       
+
     }
 
     public void Shoot()
     {
         Debug.Log("Shooting");
         GameObject obj = Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);
-        if (enemyPlayer != null)
+        if (playerReferences.enemyPlayer != null)
         {
-            if (los.enemyOnSight)
+            if (playerReferences.los.enemyOnSight)
             {
-                obj.GetComponent<Bullet>().SetTarget(enemyPlayer.gameObject);
+                obj.GetComponent<Bullet>().SetTarget(playerReferences.enemyPlayer.gameObject);
             }
             else
             {

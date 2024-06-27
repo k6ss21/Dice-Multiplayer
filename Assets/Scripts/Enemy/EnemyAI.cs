@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    Player player;
+    EnemyReferences enemyReferences;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform shootPosition;
     [SerializeField] float shootInterval = 3f;
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
+        enemyReferences = GetComponent<EnemyReferences>();
         StartCoroutine(ShootAtInterval());
 
     }
@@ -21,10 +21,10 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log("Shooting");
         GameObject obj = Instantiate(projectilePrefab, shootPosition.position, Quaternion.identity);
-        if (player != null)
+        if (enemyReferences.player != null)
         {
 
-            obj.GetComponent<Bullet>().SetTarget(player.gameObject);
+            obj.GetComponent<Bullet>().SetTarget(enemyReferences.player.gameObject);
 
            // obj.GetComponent<Bullet>().SetDirection(transform.forward);
 

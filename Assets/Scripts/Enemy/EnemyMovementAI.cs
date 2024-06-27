@@ -10,20 +10,19 @@ public class EnemyMovementAI : MonoBehaviour
     bool moveRight;
     public float moveSpeed = 10f;
 
-    public Player target;
+    EnemyReferences  enemyReferences;
 
     [SerializeField] float pathFindingDelay;
     [SerializeField] float pathFindingTime;
 
-    private NavMeshAgent navMeshAgent;
+    
 
 
     private void Start()
     {
-        target = FindObjectOfType<Player>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+       enemyReferences = GetComponent<EnemyReferences>();
         StartCoroutine(MoveEnemyRoutine());
-        Vector3 lookPos = target.transform.position - transform.position;
+        Vector3 lookPos = enemyReferences.player.transform.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation =  rotation;
@@ -31,7 +30,7 @@ public class EnemyMovementAI : MonoBehaviour
     }
     private void Update()
     {
-        bool inRange = Vector3.Distance(target.transform.position, transform.position) <= 5f;
+        bool inRange = Vector3.Distance(enemyReferences.player.transform.position, transform.position) <= 5f;
         Debug.Log(inRange);
 
         if (!inRange)
@@ -80,7 +79,7 @@ public class EnemyMovementAI : MonoBehaviour
 
     void LootAtTargert()
     {
-        Vector3 lookPos = target.transform.position - transform.position;
+        Vector3 lookPos = enemyReferences.player.transform.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.2f);
@@ -91,7 +90,7 @@ public class EnemyMovementAI : MonoBehaviour
         if (Time.time >= pathFindingTime)
         {
             pathFindingTime = Time.time + pathFindingDelay;
-            navMeshAgent.SetDestination(target.transform.position);
+            enemyReferences.navMeshAgent.SetDestination(enemyReferences.player.transform.position);
         }
 
     }
