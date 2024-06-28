@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: f19ca7e70c747504db6d4024a2e10701, type: 2}
 --- !u!1 &115088108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 7655e7932ac28cb4098d42d796c9e09b, type: 2}
 --- !u!114 &365635734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2704,7 +2704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 33dc73f6df7adcf45a2468b8e3a39698, type: 2}
 --- !u!114 &500835152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2869,7 +2869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 01724813413e2184ca75fc4c1a512a84, type: 2}
 --- !u!114 &517855843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3152,7 +3152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: b2d61cb783f3582438e86dd65329ce34, type: 2}
 --- !u!1 &684518746
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,7 +3814,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 8b2143badcb2dff429c5891a8d9792d9, type: 2}
 --- !u!1 &792988369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4127,7 +4127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 0ff89f17171b08849b7ff4d36cfedd38, type: 2}
 --- !u!1 &814060816
 GameObject:
   m_ObjectHideFlags: 0
@@ -4313,7 +4313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: d6726645d436aef43a804a82d11f144b, type: 2}
 --- !u!114 &819702143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4824,7 +4824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: e5939caf4b6269343968079ebeb6e895, type: 2}
 --- !u!1 &911073311
 GameObject:
   m_ObjectHideFlags: 0
@@ -5370,7 +5370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: dd28f99447163df42b4b29305a9e9452, type: 2}
 --- !u!114 &1057887799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6133,7 +6133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 0f87ae3462d4dc441bc8918bc6d70b58, type: 2}
 --- !u!114 &1341266196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6313,7 +6313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: a798d349c920e5242aa52a724d2481c9, type: 2}
 --- !u!114 &1378498935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8254,7 +8254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 4d3380a9f77cca74da8da46bb5844b22, type: 2}
 --- !u!114 &1807260281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9137,7 +9137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disable: 0
-  skillDetails: {fileID: 0}
+  skillDetails: {fileID: 11400000, guid: 9822b61f9d3c86a45b6e3b28a0dff96c, type: 2}
 --- !u!114 &2081984583
 MonoBehaviour:
   m_ObjectHideFlags: 0
