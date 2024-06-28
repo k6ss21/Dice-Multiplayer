@@ -17,6 +17,7 @@ public class SkillAssign : MonoBehaviour
 
     public ManageSkills skillManager;
 
+    public Sprite testSprite;
 
     private void Start()
     {
@@ -69,7 +70,9 @@ public class SkillAssign : MonoBehaviour
     {
         for (int i = 0; i < skillSlot.Length; i++)
         {
-            skillSlot[i].GetComponentInChildren<Image>().sprite = assignedSkills[i].skillDetails.skillCardImage;
+          //  Debug.Log();
+             skillSlot[i].GetComponent<Image>().sprite = assignedSkills[i].skillDetails.skillCardImage;
+            // skillSlot[i].GetComponent<Image>().sprite  = testSprite;
         }
     }
 

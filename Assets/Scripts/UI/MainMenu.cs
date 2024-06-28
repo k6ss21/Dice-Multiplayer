@@ -11,8 +11,8 @@ public class MainMenu : MonoBehaviour
         skillPage.SetActive(false);
     }
 
-    public void SkillsButton()
+    public void SkillsButton(bool b)
     {
-        skillPage.SetActive(true);
+        skillPage.SetActive(b);
     }
 }
