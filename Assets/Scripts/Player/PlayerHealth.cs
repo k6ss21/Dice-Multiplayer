@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerHealth : MonoBehaviour,IDamageable
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] float playerHealth;
     float currentHealth;
@@ -11,6 +11,15 @@ public class PlayerHealth : MonoBehaviour,IDamageable
     public Image fillImage;
     public bool barUpdate;
     public float lerpSpeed;
+
+    private void OnEnable()
+    {
+        Skill_HealUp_Button.OnHealUpPress += TakeHealth;
+    }
+    private void OnDisable()
+    {
+        Skill_HealUp_Button.OnHealUpPress -= TakeHealth;
+    }
 
     private void Start()
     {

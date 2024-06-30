@@ -1,22 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
+    float damage;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform shootPosition;
 
     PlayerReferences playerReferences;
 
-    
+    void OnEnable()
+    {
+        Skill_DamageUp_Button.OnDamageChange += ChangeDamage;
+    }
+
+    private void OnDisable()
+    {
+         Skill_DamageUp_Button.OnDamageChange += ChangeDamage;
+    }
+
+
 
     private void Start()
     {
         playerReferences = GetComponent<PlayerReferences>();
-       
 
+
+    }
+
+    void ChangeDamage(float amount)
+    {
+        damage = amount;
     }
 
     public void Shoot()
@@ -25,13 +39,15 @@ public class Player : MonoBehaviour
         GameObject obj = Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);
         if (playerReferences.enemyPlayer != null)
         {
+            Bullet bullet = obj.GetComponent<Bullet>();
+            bullet.SetDamage(damage);
             if (playerReferences.los.enemyOnSight)
             {
-                obj.GetComponent<Bullet>().SetTarget(playerReferences.enemyPlayer.gameObject);
+                bullet.SetTarget(playerReferences.enemyPlayer.gameObject);
             }
             else
             {
-                obj.GetComponent<Bullet>().SetDirection(transform.forward);
+                bullet.SetDirection(transform.forward);
             }
         }
 
@@ -45,5 +61,5 @@ public class Player : MonoBehaviour
         }
     }
 
- 
+
 }

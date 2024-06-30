@@ -31,7 +31,10 @@ public class Bullet : MonoBehaviour
 
         BulletMovement();
     }
-
+    public void SetDamage(float amount)
+    {
+        damage = amount;
+    }
     public void SetDirection(Vector3 dir)
     {
         direction = dir;
