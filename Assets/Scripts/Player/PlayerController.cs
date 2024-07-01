@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using UnityEngine.Rendering;
 public class PlayerController : MonoBehaviour
 {
 
@@ -8,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Speed ​​at which the character moves. It is not affected by gravity or jumping.")]
     public float velocity = 5f;
+    [Tooltip("Speed Multiplier ​​at which the character moves. It is not affected by gravity or jumping.")]
+    public float velocityMulti = 1f;
     [Tooltip("This value is added to the speed value while the character is sprinting.")]
     public float sprintAdittion = 3.5f;
     [Tooltip("The higher the value, the higher the character will jump.")]
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
     bool inputCrouch;
     bool inputSprint;
 
-    
+
     PlayerReferences playerReferences;
 
     public enum PlayerInputSelect
@@ -58,18 +61,20 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         playerInput.Enable();
+        Skill_MoveSpeedUp_Button.OnMoveSpeedUpPress += ChangeVelocityMulti;
     }
 
     private void OnDisable()
     {
         playerInput.Disable();
+         Skill_MoveSpeedUp_Button.OnMoveSpeedUpPress -= ChangeVelocityMulti;
     }
 
 
 
     void Start()
     {
-       
+
         playerReferences = GetComponent<PlayerReferences>();
         // Message informing the user that they forgot to add an playerReferences.animator
         if (playerReferences.animator == null)
@@ -87,7 +92,7 @@ public class PlayerController : MonoBehaviour
         // inputVertical = Input.GetAxis("Vertical");
 
 
-        
+
         // if (playerInputSelect == PlayerInputSelect.Mobile && fixedJoystick!= null)
         // {
         //     inputHorizontal = fixedJoystick.Horizontal;
@@ -95,14 +100,14 @@ public class PlayerController : MonoBehaviour
         // }
         // else if (playerInputSelect == PlayerInputSelect.PC)
         // {
-            direction = playerInput.Player.Move.ReadValue<Vector2>();
+        direction = playerInput.Player.Move.ReadValue<Vector2>();
 
-            inputHorizontal = direction.x;
-            inputVertical = direction.y;
+        inputHorizontal = direction.x;
+        inputVertical = direction.y;
         // }
 
-        if(playerInput.Player.Jump.WasPerformedThisFrame())
-        {   
+        if (playerInput.Player.Jump.WasPerformedThisFrame())
+        {
             Jump();
         }
 
@@ -154,15 +159,15 @@ public class PlayerController : MonoBehaviour
 
         // Sprinting velocity boost or crounching desacelerate
         float velocityAdittion = 0;
-       // Debug.Log("VD = " + velocityAdittion);
+        // Debug.Log("VD = " + velocityAdittion);
         if (isSprinting)
             velocityAdittion = sprintAdittion;
         // if (isCrouching)
         //     velocityAdittion = -(velocity * 0.50f); // -50% velocity
 
         // Direction movement
-        float directionX = inputHorizontal * (velocity + velocityAdittion) * Time.deltaTime;
-        float directionZ = inputVertical * (velocity + velocityAdittion) * Time.deltaTime;
+        float directionX = inputHorizontal * ((velocity * velocityMulti) + velocityAdittion) * Time.deltaTime;
+        float directionZ = inputVertical * ((velocity * velocityMulti) + velocityAdittion) * Time.deltaTime;
         float directionY = 0;
 
         // Jump handler
@@ -228,6 +233,11 @@ public class PlayerController : MonoBehaviour
             // Disable crounching when jumping
             //isCrouching = false; 
         }
+    }
+
+    void ChangeVelocityMulti(float value)
+    {
+        velocityMulti = value;
     }
 
 

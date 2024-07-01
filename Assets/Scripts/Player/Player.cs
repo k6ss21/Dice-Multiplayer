@@ -11,12 +11,12 @@ public class Player : MonoBehaviour
 
     void OnEnable()
     {
-        Skill_DamageUp_Button.OnDamageChange += ChangeDamage;
+       Skill_DamageUp_Button.OnDamageChange += ChangeDamage;
     }
 
     private void OnDisable()
     {
-         Skill_DamageUp_Button.OnDamageChange += ChangeDamage;
+        Skill_DamageUp_Button.OnDamageChange -= ChangeDamage;
     }
 
 

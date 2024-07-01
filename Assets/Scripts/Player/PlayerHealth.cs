@@ -14,11 +14,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void OnEnable()
     {
-        Skill_HealUp_Button.OnHealUpPress += TakeHealth;
+       Skill_HealUp_Button.OnHealUpPress += TakeHealth;
     }
     private void OnDisable()
     {
-        Skill_HealUp_Button.OnHealUpPress -= TakeHealth;
+       Skill_HealUp_Button.OnHealUpPress -= TakeHealth;
     }
 
     private void Start()

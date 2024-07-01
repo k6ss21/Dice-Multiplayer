@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 461135298243615060}
   - component: {fileID: 313976209720728779}
   - component: {fileID: 3765381429602571088}
-  - component: {fileID: 7566469795709117344}
+  - component: {fileID: 3464622110079189070}
   m_Layer: 5
   m_Name: Skill Damage Up Buttom
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7566469795709117344
+--- !u!114 &3464622110079189070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,3 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f747535ad12bac744b4a93f7f8605bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 3765381429602571088}
+  damageAmount: 10

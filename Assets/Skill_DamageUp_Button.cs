@@ -1,10 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-using System.Collections;
 public class Skill_DamageUp_Button : MonoBehaviour
 {
-    [SerializeField] Button button;
+     [SerializeField] Button button;
     [SerializeField] float damageAmount;
 
     public static event Action<float> OnDamageChange;
@@ -22,6 +23,7 @@ public class Skill_DamageUp_Button : MonoBehaviour
     void DamageUp()
     {
         OnDamageChange?.Invoke(damageAmount);
+        StartCoroutine(DamageResetTimer());
     }
 
     IEnumerator DamageResetTimer ()
