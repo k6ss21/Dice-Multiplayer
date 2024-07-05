@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Dice
   - EnemyProjectile
+  - Player Health Bar
+  - Enemy Health Bar
   layers:
   - Default
   - TransparentFX

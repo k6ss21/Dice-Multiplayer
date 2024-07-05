@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour, IDamageable
@@ -8,9 +6,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] float playerHealth;
     float currentHealth;
 
-    public Image fillImage;
+     Image fillImage;
     public bool barUpdate;
     public float lerpSpeed;
+
+    PlayerReferences playerReferences;
+
+    public static event Action OnPlayerDead;
 
     private void OnEnable()
     {
@@ -23,11 +25,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
+       // playerReferences = GetComponent<PlayerReferences>();
+        fillImage = GameObject.FindWithTag("Player Health Bar").GetComponent<Image>();
         barUpdate = false;
         currentHealth = playerHealth;
         if (fillImage != null)
         {
             fillImage.fillAmount = currentHealth / playerHealth;
+        }
+        else
+        {
+            Debug.LogError("Fill Image Not Found");
         }
     }
 
@@ -46,6 +54,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            PlayerDead();
         }
     }
 
@@ -71,10 +80,19 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                 barUpdate = false;
             }
         }
+         else
+        {
+            Debug.LogError("Fill Image Not Found");
+        }
     }
 
     public void TakeDamage(float damage)
     {
         DealDamage(damage);
+    }
+
+    void PlayerDead()
+    {
+        OnPlayerDead?.Invoke();
     }
 }
