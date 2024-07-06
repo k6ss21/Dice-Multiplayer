@@ -7,9 +7,10 @@ public class EnemyReferences : MonoBehaviour
     public Player player;
     public NavMeshAgent navMeshAgent;
 
-    private void Start()
+    public void Start()
     {
         player = FindObjectOfType<Player>();
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
+
 }

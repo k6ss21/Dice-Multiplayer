@@ -7,11 +7,11 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform shootPosition;
 
-    PlayerReferences playerReferences;
+    [SerializeField]PlayerReferences playerReferences;
 
     void OnEnable()
     {
-       Skill_DamageUp_Button.OnDamageChange += ChangeDamage;
+        Skill_DamageUp_Button.OnDamageChange += ChangeDamage;
     }
 
     private void OnDisable()
@@ -21,13 +21,6 @@ public class Player : MonoBehaviour
 
 
 
-    private void Start()
-    {
-        playerReferences = GetComponent<PlayerReferences>();
-
-
-    }
-
     void ChangeDamage(float amount)
     {
         damage = amount;
@@ -35,10 +28,11 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        Debug.Log("Shooting");
+        // Debug.Log("Shooting");
         GameObject obj = Instantiate(bulletPrefab, shootPosition.position, Quaternion.identity);
         if (playerReferences.enemyPlayer != null)
         {
+            Debug.Log("Enemy Shoot");
             Bullet bullet = obj.GetComponent<Bullet>();
             bullet.SetDamage(damage);
             if (playerReferences.los.enemyOnSight)
@@ -49,6 +43,10 @@ public class Player : MonoBehaviour
             {
                 bullet.SetDirection(transform.forward);
             }
+        }
+        else
+        {
+            Debug.Log("No Enemy Found");
         }
 
     }

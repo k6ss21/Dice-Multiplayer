@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shooting");
+     //   Debug.Log("Shooting");
         GameObject obj = Instantiate(projectilePrefab, shootPosition.position, Quaternion.identity);
         if (enemyReferences.player != null)
         {

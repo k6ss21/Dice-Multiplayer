@@ -28,10 +28,11 @@ public class EnemyMovementAI : MonoBehaviour
         transform.rotation =  rotation;
 
     }
+
     private void Update()
     {
         bool inRange = Vector3.Distance(enemyReferences.player.transform.position, transform.position) <= 5f;
-        Debug.Log(inRange);
+      //  Debug.Log(inRange);
 
         if (!inRange)
         {

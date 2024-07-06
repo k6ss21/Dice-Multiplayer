@@ -1512,6 +1512,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 224082576095307643, guid: e0788503797e84a46bf83807e16df62d,
     type: 3}
   shootPosition: {fileID: 7021620833583644519}
+  playerReferences: {fileID: 3311973332665275670}
 --- !u!114 &8367510717239372962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1561,7 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cc: {fileID: 0}
   animator: {fileID: 0}
-  los: {fileID: 0}
+  los: {fileID: 2397287695385824134}
   enemyPlayer: {fileID: 0}
   fillImage: {fileID: 0}
 --- !u!1 &4601434948734315562

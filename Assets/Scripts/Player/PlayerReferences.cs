@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerReferences : MonoBehaviour
@@ -10,12 +11,20 @@ public class PlayerReferences : MonoBehaviour
 
     public Image fillImage;
 
-    void Start()
+    private void Start()
     {
+        
+       Invoke("Initialize", 5.0f);
+    }
+    void Initialize()
+    {
+        Debug.Log("Initialize");
         cc = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
         los = GetComponentInChildren<LineOfSight>();
         enemyPlayer = FindObjectOfType<EnemyAI>();
-        fillImage  = GameObject.FindGameObjectWithTag("Player Health Bar").GetComponent<Image>();
+        fillImage = GameObject.FindGameObjectWithTag("Player Health Bar").GetComponent<Image>();
     }
+
+
 }

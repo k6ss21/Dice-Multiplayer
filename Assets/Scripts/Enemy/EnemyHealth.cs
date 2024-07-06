@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour,IDamageable
 
     private void Start()
     {
+         fillImage = GameObject.FindWithTag("Enemy Health Bar").GetComponent<Image>();
         barUpdate = false;
         currentHealth = enemyHealth;
         if (fillImage != null)

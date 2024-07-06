@@ -77,7 +77,7 @@ public class LineOfSight : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy in LOS!!! ");
+          //  Debug.Log("Enemy in LOS!!! ");
             enemyOnSight = true;
         }
     }
@@ -87,7 +87,7 @@ public class LineOfSight : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             enemyOnSight = false;
-            Debug.Log("Enemy out of LOS!!! ");
+           // Debug.Log("Enemy out of LOS!!! ");
         }
     }
 
