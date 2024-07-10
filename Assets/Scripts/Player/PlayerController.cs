@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine.Rendering;
 public class PlayerController : MonoBehaviour
 {
-
+    CharacterController cc;
     Vector2 direction;
 
     [Tooltip("Speed ​​at which the character moves. It is not affected by gravity or jumping.")]
@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
     bool inputSprint;
 
 
-    PlayerReferences playerReferences;
-
+   PlayerReferences playerReferences;
+    Animator animator;
     public enum PlayerInputSelect
     {
         Mobile,
@@ -74,10 +74,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        cc = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
         playerReferences = GetComponent<PlayerReferences>();
         // Message informing the user that they forgot to add an playerReferences.animator
-        if (playerReferences.animator == null)
+        if (animator == null)
             Debug.LogWarning("Hey buddy, you don't have the playerReferences.animator component in your player. Without it, the animations won't work.");
     }
 
@@ -126,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
         // Run and Crouch animation
         // If dont have playerReferences.animator component, this block wont run
-        if (playerReferences.cc.isGrounded && playerReferences.animator != null)
+        if (cc.isGrounded && animator != null)
         {
 
             // Crouch
@@ -135,18 +136,18 @@ public class PlayerController : MonoBehaviour
 
             // Run
             float minimumSpeed = 0.5f;
-            charSpeed = playerReferences.cc.velocity.magnitude;
-            playerReferences.animator.SetBool("run", playerReferences.cc.velocity.magnitude > minimumSpeed);
+            charSpeed = cc.velocity.magnitude;
+            animator.SetBool("run", cc.velocity.magnitude > minimumSpeed);
 
             // Sprint
-            isSprinting = playerReferences.cc.velocity.magnitude > minimumSpeed && inputSprint;
+            isSprinting = cc.velocity.magnitude > minimumSpeed && inputSprint;
             //playerReferences.animator.SetBool("sprint", isSprinting);
 
         }
 
         // Jump animation
-        if (playerReferences.animator != null)
-            playerReferences.animator.SetBool("air", playerReferences.cc.isGrounded == false);
+        if (animator != null)
+            animator.SetBool("air", cc.isGrounded == false);
 
         HeadHittingDetect();
 
@@ -220,14 +221,14 @@ public class PlayerController : MonoBehaviour
         Vector3 horizontalDirection = forward + right;
 
         Vector3 movement = verticalDirection + horizontalDirection;
-        playerReferences.cc.Move(movement);
+       cc.Move(movement);
 
     }
 
     void Jump()
     {
         // Handle can jump or not
-        if (playerReferences.cc.isGrounded)
+        if (cc.isGrounded)
         {
             isJumping = true;
             // Disable crounching when jumping
@@ -246,8 +247,8 @@ public class PlayerController : MonoBehaviour
     void HeadHittingDetect()
     {
         float headHitDistance = 1.1f;
-        Vector3 ccCenter = transform.TransformPoint(playerReferences.cc.center);
-        float hitCalc = playerReferences.cc.height / 2f * headHitDistance;
+        Vector3 ccCenter = transform.TransformPoint(cc.center);
+        float hitCalc = cc.height / 2f * headHitDistance;
 
         // Uncomment this line to see the Ray drawed in your characters head
         // Debug.DrawRay(ccCenter, Vector3.up * headHeight, Color.red);

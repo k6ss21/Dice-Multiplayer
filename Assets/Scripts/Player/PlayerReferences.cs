@@ -14,11 +14,11 @@ public class PlayerReferences : MonoBehaviour
     private void Start()
     {
         
-       Invoke("Initialize", 5.0f);
+       Invoke("Initialize", 1.0f);
     }
     void Initialize()
     {
-        Debug.Log("Initialize");
+       
         cc = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
         los = GetComponentInChildren<LineOfSight>();

@@ -10,29 +10,30 @@ public class EnemyMovementAI : MonoBehaviour
     bool moveRight;
     public float moveSpeed = 10f;
 
-    EnemyReferences  enemyReferences;
-
+    EnemyReferences enemyReferences;
+    Player player;
     [SerializeField] float pathFindingDelay;
     [SerializeField] float pathFindingTime;
 
-    
+
 
 
     private void Start()
     {
-       enemyReferences = GetComponent<EnemyReferences>();
+        player = FindObjectOfType<Player>();
+        enemyReferences = GetComponent<EnemyReferences>();
         StartCoroutine(MoveEnemyRoutine());
-        Vector3 lookPos = enemyReferences.player.transform.position - transform.position;
+        Vector3 lookPos = player.transform.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation =  rotation;
+        transform.rotation = rotation;
 
     }
 
     private void Update()
     {
-        bool inRange = Vector3.Distance(enemyReferences.player.transform.position, transform.position) <= 5f;
-      //  Debug.Log(inRange);
+        bool inRange = Vector3.Distance(player.transform.position, transform.position) <= 5f;
+        //  Debug.Log(inRange);
 
         if (!inRange)
         {
@@ -80,7 +81,7 @@ public class EnemyMovementAI : MonoBehaviour
 
     void LootAtTargert()
     {
-        Vector3 lookPos = enemyReferences.player.transform.position - transform.position;
+        Vector3 lookPos = player.transform.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.2f);
@@ -91,7 +92,7 @@ public class EnemyMovementAI : MonoBehaviour
         if (Time.time >= pathFindingTime)
         {
             pathFindingTime = Time.time + pathFindingDelay;
-            enemyReferences.navMeshAgent.SetDestination(enemyReferences.player.transform.position);
+            enemyReferences.navMeshAgent.SetDestination(player.transform.position);
         }
 
     }

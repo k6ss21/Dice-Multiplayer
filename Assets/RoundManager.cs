@@ -64,8 +64,9 @@ public class RoundManager : MonoBehaviour
 
     void StartRound()
     {
-        Instantiate(playerPrefab, playerSpawnPos.position, Quaternion.identity);
-        Instantiate(enemyPrefab, enemySpawnPos.position, Quaternion.identity);
+       GameObject player = Instantiate(playerPrefab, playerSpawnPos.position, Quaternion.identity);
+       GameObject enemyPlayer = Instantiate(enemyPrefab, enemySpawnPos.position, Quaternion.identity);
+       player.GetComponent<Player>().enemyPlayer = enemyPlayer;
         OnRoundStart?.Invoke();
     }
 

@@ -10,6 +10,7 @@ TagManager:
   - EnemyProjectile
   - Player Health Bar
   - Enemy Health Bar
+  - ShootButton
   layers:
   - Default
   - TransparentFX

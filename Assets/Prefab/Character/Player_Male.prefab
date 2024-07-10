@@ -409,7 +409,7 @@ MonoBehaviour:
   VisionAngle: 0
   VisionObstructingLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   VisionConeResolution: 120
   enemyOnSight: 0
 --- !u!1 &953563921487615315
